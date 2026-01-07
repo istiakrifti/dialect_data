@@ -35,17 +35,32 @@ async function loadData() {
     hideDataDisplay();
 
     try {
-        const fileName = `${dialect} Test Translation.csv`;
-        const filePath = `Vashantor_Simplified/Test/${fileName}`;
+        // Load all three datasets
+        const trainPath = `Vashantor_Simplified/Train/${dialect} Train Translation.csv`;
+        const valPath = `Vashantor_Simplified/Validation/${dialect}  Validation Translation.csv`;
+        const testPath = `Vashantor_Simplified/Test/${dialect} Test Translation.csv`;
         
-        const response = await fetch(filePath);
+        const [trainResponse, valResponse, testResponse] = await Promise.all([
+            fetch(trainPath),
+            fetch(valPath),
+            fetch(testPath)
+        ]);
         
-        if (!response.ok) {
-            throw new Error(`Failed to load file: ${response.status}`);
+        if (!trainResponse.ok || !valResponse.ok || !testResponse.ok) {
+            throw new Error('Failed to load one or more files');
         }
 
-        const text = await response.text();
-        const rows = parseCSV(text);
+        const trainText = await trainResponse.text();
+        const valText = await valResponse.text();
+        const testText = await testResponse.text();
+        
+        // Parse all datasets
+        const trainRows = parseCSV(trainText);
+        const valRows = parseCSV(valText);
+        const testRows = parseCSV(testText);
+        
+        // Merge in order: Train, Validation, Test
+        const rows = [...trainRows, ...valRows, ...testRows];
         
         // Calculate split range
         const startIndex = (split - 1) * 250;
