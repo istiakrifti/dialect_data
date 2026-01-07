@@ -37,7 +37,7 @@ async function loadData() {
     try {
         // Load all three datasets
         const trainPath = `Vashantor_Simplified/Train/${dialect} Train Translation.csv`;
-        const valPath = `Vashantor_Simplified/Validation/${dialect}  Validation Translation.csv`;
+        const valPath = `Vashantor_Simplified/Validation/${dialect} Validation Translation.csv`;
         const testPath = `Vashantor_Simplified/Test/${dialect} Test Translation.csv`;
         
         const [trainResponse, valResponse, testResponse] = await Promise.all([
