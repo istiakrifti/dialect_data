@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialect Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dialect Data</h1>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="dialect-select">Select Dialect:</label>
+                <select id="dialect-select">
+                    <option value="">-- Choose a Dialect --</option>
+                    <option value="Barishal">Barishal</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Noakhali">Noakhali</option>
+                    <option value="Sylhet">Sylhet</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="split-select">Select Split (1-10):</label>
+                <select id="split-select">
+                    <option value="1">Split 1 (1-250)</option>
+                    <option value="2">Split 2 (251-500)</option>
+                    <option value="3">Split 3 (501-750)</option>
+                    <option value="4">Split 4 (751-1000)</option>
+                    <option value="5">Split 5 (1001-1250)</option>
+                    <option value="6">Split 6 (1251-1500)</option>
+                    <option value="7">Split 7 (1501-1750)</option>
+                    <option value="8">Split 8 (1751-2000)</option>
+                    <option value="9">Split 9 (2001-2250)</option>
+                    <option value="10">Split 10 (2251-2500)</option>
+                </select>
+            </div>
+
+            <button id="load-btn" class="btn-primary">Load Data</button>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading data...</p>
+        </div>
+
+        <div id="data-display" class="data-display" style="display: none;">
+            <div class="data-header">
+                <h2 id="current-info"></h2>
+                <div class="pagination-info">
+                    <span id="page-info"></span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Dialect Text</th>
+                            <th>Standard Text</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button id="prev-btn" class="btn-secondary">← Previous</button>
+                <span id="pagination-text"></span>
+                <button id="next-btn" class="btn-secondary">Next →</button>
+            </div>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
